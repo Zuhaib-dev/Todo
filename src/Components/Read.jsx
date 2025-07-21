@@ -1,15 +1,19 @@
+import { useContext } from "react";
 import { toast } from "react-toastify";
+import { todocontext } from "./Wrapper.jsx";
 
 
-const Read = (props) => {
+const Read = () => {
+ const [todos ,settodos] =  useContext(todocontext);
+ 
+ 
   const deleteHandler = (id) => {
     const filtertodo = todos.filter((todo) => todo.id != id);
     settodos(filtertodo);
     toast.error("Todo deleted!")
   };
 
-  const todos = props.todos;
-  const settodos = props.settodos;
+  
   const rendertodos = todos.map((todo) => {
     return (
       <li key={todo.id} className="    mb-2 flex justify-between items-center p-4 rounded bg-gray-900"> 
