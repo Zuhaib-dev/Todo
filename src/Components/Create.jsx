@@ -1,20 +1,28 @@
 import { nanoid } from "nanoid";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const create = (props) => {
   const todos = props.todos;
   const settodos = props.settodos;
 
-  const {register, handleSubmit,reset,formState :{ errors},
-}= useForm()
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const submitHandler = (data) => {
-   
-    const newTodo = {
-      id: nanoid(),
-      // title: title,
-      isComplete: false,
-    };
+    data.isComplete = false;
+    data.id = nanoid();
+    console.log(data);
+    const copytodos = [...todos];
+    copytodos.push(data);
+    settodos(copytodos);
+    toast.success("Todo Created!")
+
+    reset();
   };
 
   return (
@@ -27,8 +35,14 @@ const create = (props) => {
           className="border-b w-full font-light text-2xl p-2 outline-0 "
           type="text"
           placeholder="Title"
-          {...register("title")}
+          {...register("title", { required: "Title cannot be empty " })}
         />
+        {errors && errors.title && errors.title.message && (
+          <small className="font-bold text-red-500">
+            {" "}
+            {errors.title.message}{" "}
+          </small>
+        )}
         <br /> <br />
         <button className=" create-btn bg-green-700 text-white-900 text-xl px-10 py-2 border rounded-lg   mt-10">
           Create Todo

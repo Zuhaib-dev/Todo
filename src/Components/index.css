@@ -1,4 +1,7 @@
 @import "tailwindcss";
+*{
+  font-family: 'Poppins', sans-serif;
+}
 .close-btn{
     animation: var(--animate-bounce); /* bounce 1s infinite */
 
