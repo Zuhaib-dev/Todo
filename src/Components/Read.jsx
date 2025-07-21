@@ -18,7 +18,7 @@ const Read = () => {
     return (
       <li key={todo.id} className="    mb-2 flex justify-between items-center p-4 rounded bg-gray-900"> 
         <span className=" text-xl font-thin">{todo.title}</span> 
-        <button className=" close-btn text-sm text-red-400" onClick={() => deleteHandler(todo.id)}>Delete</button>
+        <button className=" close-btn text-sm text-red-500" onClick={() => deleteHandler(todo.id)}>Delete</button>
       </li>
     );
   });
